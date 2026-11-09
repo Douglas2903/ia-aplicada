@@ -1,4 +1,5 @@
 # Modelos de prompt
+# Modelos de prompt
 
 Modelos que eu uso de verdade para estudar e programar com IA. Cada um tem quatro partes: contexto, tarefa, restrições e formato da resposta. Depois de usar, anoto o que ajustei.
 
@@ -12,14 +13,19 @@ Modelos que eu uso de verdade para estudar e programar com IA. Cada um tem quatr
 Sou estudante de ADS e estou aprendendo JavaScript. Já sei [o que você já sabe].
 Me explique [conceito].
 Use linguagem simples. Se usar um termo técnico, explique. Não use frameworks.
+Se o exemplo usar algo que eu ainda não sei, explique num comentário do código.
 Responda neste formato:
 1. Uma frase resumindo.
-2. Uma analogia do dia a dia.
-3. Um exemplo de código curto e comentado.
-4. Um erro comum de iniciante.
-5. Uma pergunta para eu testar se entendi, sem a resposta.
+2. A definição técnica, como é usada no trabalho, seguida de uma explicação simples.
+3. Uma analogia do dia a dia.
+4. Um exemplo de código curto e comentado.
+5. Um erro comum de iniciante e a boa prática correspondente.
+6. Uma pergunta para eu testar se entendi, sem a resposta.
 ```
 
-**Uso real:** (a preencher)
+**Uso real:** "o que é uma API e para que serve uma chave de API" (09/11/2026). O que funcionou: as analogias, o exemplo de código comentado e as boas e más práticas. Na pergunta de teste, acertei as consequências de uma chave vazada, mas não como ela vaza: o código do front-end roda no navegador, e qualquer pessoa vê a chave apertando F12.
 
-**O que ajustei:** (a preencher)
+**O que ajustei:**
+- Passei a usar só a lista do que eu sei, sem link: a IA não conseguiu abrir o link do meu repositório.
+- Pedi para explicar num comentário o que eu ainda não sei: o exemplo usou async/await e JSON, que eu ainda não tinha estudado.
+- Acrescentei a definição técnica usada no trabalho e a boa prática junto do erro comum.
