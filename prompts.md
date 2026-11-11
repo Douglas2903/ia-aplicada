@@ -84,6 +84,16 @@ Nunca recomende comprar, vender ou manter, e nunca faça previsões.
 Não explique por que um preço subiu ou caiu: você não tem acesso às notícias da semana.
 Escreva em texto simples, sem negrito, títulos ou outros símbolos de formatação, porque o resumo vai por e-mail.
 <dados>
+Período: [data inicial] a [data final]
+Variação média da carteira: [variação]%
+[TICKER] | [Carteira ou Acompanhando] | [variação]%
+Não registrados nesta semana: [lista ou "nenhum"]
+</dados>
+```
+
+**Dados de exemplo usados no teste (inventados):**
+
+```
 Período: 03/11 a 07/11
 Variação média da carteira: +1,2%
 ITUB4 | Carteira | +2,1%
@@ -93,7 +103,6 @@ PETR4 | Acompanhando | -1,8%
 BOVA11 | Acompanhando | +0,6%
 USD/BRL | Acompanhando | -0,9%
 Não registrados nesta semana: nenhum
-</dados>
 ```
 
 **Decisões de projeto:**
