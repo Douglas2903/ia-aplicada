@@ -71,13 +71,13 @@ Você vai receber, entre as tags <dados>, a variação de cada ativo na semana, 
 Os ativos do tipo "Carteira" são os que o estudante tem; os do tipo "Acompanhando" ele só observa. BOVA11 representa o mercado, porque acompanha o índice Ibovespa. USD/BRL é a cotação do dólar, não uma ação.
 Escreva o resumo em português, em linguagem simples, com no máximo 20 linhas, neste formato:
 Resumo da semana ([período])
-Destaques: a maior alta e a maior baixa entre as ações, sem contar BOVA11 e USD/BRL.
+Destaques: escreva esta frase, usando as linhas "Maior variação" e "Menor variação" de <dados>: "A maior variação da semana foi de [ticker] ([variação]) e a menor foi de [ticker] ([variação])."
 Carteira: uma linha por ativo, com a variação.
-Acompanhando: uma linha por ativo, com a variação, sem incluir o USD/BRL.
-Carteira x mercado: diga se a variação média da carteira ficou acima ou abaixo da do BOVA11, citando os dois números.
+Acompanhando: uma linha por ativo, com a variação, sem incluir BOVA11 e USD/BRL, que têm linhas próprias.
+Carteira x mercado: escreva esta frase, trocando o que está entre colchetes pelos dados: "Na média, a carteira variou [variação média da carteira], ficando [acima do, abaixo do ou igual ao] mercado (BOVA11), que variou [variação do BOVA11]."
 Dólar: como o USD/BRL variou.
-Termo da semana: explique, em até 2 linhas, um termo do mercado ligado aos dados desta semana.
-Avisos: os ativos que não foram registrados, se houver.
+Termo da semana: escolha uma palavra ou sigla que aparece neste resumo e que um investidor iniciante talvez não conheça. Explique em até 2 linhas, usando um dado desta semana como exemplo.
+Avisos: [ativos não registrados nesta semana, ou "nenhum"]
 Regras:
 Use só os números que estão em <dados>. Não calcule nem invente números.
 Nunca recomende comprar, vender ou manter, e nunca faça previsões.
@@ -86,6 +86,8 @@ Escreva em texto simples, sem negrito, títulos ou outros símbolos de formataç
 <dados>
 Período: [data inicial] a [data final]
 Variação média da carteira: [variação]%
+Maior variação: [TICKER] | [variação]%
+Menor variação: [TICKER] | [variação]%
 [TICKER] | [Carteira ou Acompanhando] | [variação]%
 Não registrados nesta semana: [lista ou "nenhum"]
 </dados>
@@ -96,6 +98,8 @@ Não registrados nesta semana: [lista ou "nenhum"]
 ```
 Período: 03/11 a 07/11
 Variação média da carteira: +1,2%
+Maior variação: ITUB4 | +2,1%
+Menor variação: PETR4 | -1,8%
 ITUB4 | Carteira | +2,1%
 TAEE11 | Carteira | +0,4%
 GGBR4 | Carteira | +1,1%
@@ -106,7 +110,8 @@ Não registrados nesta semana: nenhum
 ```
 
 **Decisões de projeto:**
-- As contas (variações e média) são feitas pelo código; a IA só escreve o texto.
+- As contas (variações, média, maior e menor variação) são feitas pelo código; a IA só escreve o texto.
+- Modelo: Gemini 3.5 Flash-Lite. Comecei com o 3.8 Flash, mas ele dava erro 503 (alta demanda). Como os números chegam prontos, o modelo mais leve basta, e ele responde em cerca de 4 segundos, contra uns 17 do 3.8 Flash.
 - A IA não explica motivos de alta ou queda: sem acesso às notícias, ela inventaria.
 - Nunca recomenda comprar, vender ou manter, e nunca faz previsões.
 - Os dados ficam entre as tags `<dados>` e são tratados só como dados (defesa contra prompt injection).
@@ -117,5 +122,13 @@ Não registrados nesta semana: nenhum
 **O que ajustei depois do primeiro uso:**
 - Tirei o USD/BRL da lista "Acompanhando", porque ele já tem uma linha própria.
 - Pedi para a IA dizer se a carteira ficou acima ou abaixo do mercado, citando os dois números.
+
+**Troca de modelo (11/11/2026):** rodei o mesmo teste no Flash-Lite, sempre em chat novo, porque na automação cada pedido vai sem histórico. Apareceram problemas que o 3.8 Flash não tinha: a IA copiou a instrução na resposta ("citando os números"), escolheu um termo genérico ("Ação") e, numa das rodadas, errou a maior baixa (TAEE11, +0,4%, em vez de PETR4, -1,8%), embora tivesse acertado na rodada anterior com o mesmo prompt. Numa rodada a colagem cortou os dados, e a IA não inventou os números que faltavam. Depois dos ajustes, duas rodadas seguidas passaram no checklist.
+
+**O que ajustei depois da troca de modelo:**
+- Mostrei as frases prontas, com colchetes, em vez de descrever o que a IA devia dizer: o modelo mais leve copiava o texto da instrução.
+- Passei a maior e a menor variação para o código, porque encontrar o maior e o menor número é uma comparação, e a IA errou essa comparação numa das rodadas, mesmo com o mesmo prompt. O código faz essa conta sempre do mesmo jeito.
+- Pedi que o termo da semana saia do próprio resumo e use um dado da semana como exemplo.
+- Tirei o BOVA11 do "Acompanhando", porque ele já aparece em "Carteira x mercado".
 
 **Limitação conhecida:** a IA não tem memória entre as semanas, então o termo da semana pode se repetir.
