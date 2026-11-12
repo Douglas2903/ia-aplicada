@@ -130,5 +130,7 @@ Não registrados nesta semana: nenhum
 - Passei a maior e a menor variação para o código, porque encontrar o maior e o menor número é uma comparação, e a IA errou essa comparação numa das rodadas, mesmo com o mesmo prompt. O código faz essa conta sempre do mesmo jeito.
 - Pedi que o termo da semana saia do próprio resumo e use um dado da semana como exemplo.
 - Tirei o BOVA11 do "Acompanhando", porque ele já aparece em "Carteira x mercado".
+ 
+**Uso real com dados reais (11/11/2026):** primeiro resumo gerado pelo código, com as variações calculadas a partir do Histórico, enviado por e-mail. Passou no checklist, e a frase "abaixo do mercado" apareceu pela primeira vez e saiu certa. Duas observações: o termo da semana foi "Ticker" nas duas execuções do dia, como previsto na limitação conhecida, e o formato das linhas da carteira mudou de uma execução para a outra ("ITUB4: +1,8%" e depois "ITUB4 | +1,8%"), mesmo com o mesmo prompt. Os números estavam certos nas duas.
 
 **Limitação conhecida:** a IA não tem memória entre as semanas, então o termo da semana pode se repetir.
